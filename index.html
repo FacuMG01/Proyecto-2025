@@ -1,89 +1,84 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda de Macetas</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tienda de Macetas</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body onload="mostrarPantalla('inicio')">
 
-    <!-- ===== MENÚ SUPERIOR ===== -->
-    <nav>
-        <button class="nav-btn activo" onclick="mostrarPantalla('inicio')">Inicio</button>
-        <button class="nav-btn" onclick="mostrarPantalla('catalogo')">Catálogo</button>
-        <button class="nav-btn" onclick="mostrarPantalla('carrito')">Carrito</button>
-        <button class="nav-btn" onclick="mostrarPantalla('contacto')">Contacto</button>
-    </nav>
+  <!-- NAV -->
+  <nav>
+    <!-- IMPORTANTE: los textos aquí coinciden con los ids que usa el script -->
+    <button type="button" class="nav-btn activo" onclick="mostrarPantalla('inicio')">inicio</button>
+    <button type="button" class="nav-btn" onclick="mostrarPantalla('catalogo')">catalogo</button>
+    <button type="button" class="nav-btn" onclick="mostrarPantalla('carrito')">carrito</button>
+    <button type="button" class="nav-btn" onclick="mostrarPantalla('contacto')">contacto</button>
+  </nav>
 
-    <!-- ===== PANTALLA DE INICIO (ADMIN) ===== -->
-    <section id="inicio" class="pantalla">
-        <h1>Modo Administrador</h1>
+  <!-- INICIO -->
+  <section id="inicio" class="pantalla">
+    <h1>Tienda de Macetas</h1>
 
-        <p>Ingresá el PIN para acceder al panel de carga de macetas.</p>
-        <input type="password" id="admin-pin" placeholder="Ingresar PIN">
+    <div>
+      <p><strong>Modo Administrador</strong></p>
+      <input id="admin-pin" type="password" placeholder="Ingresar PIN">
+      <br><br>
+      <button type="button" onclick="entrarAdmin()">Entrar como Admin</button>
+      <button type="button" onclick="mostrarPantalla('catalogo')">Ir a comprar</button>
+    </div>
 
-        <br><br>
-        <button onclick="entrarAdmin()">Entrar como Admin</button>
-        <button onclick="mostrarPantalla('catalogo')">Ir a comprar</button>
+    <!-- PANEL ADMIN (oculto hasta validar PIN) -->
+    <div id="admin-panel" style="display:none; margin-top:20px;">
+      <h2>Agregar nueva maceta</h2>
 
-        <!-- Panel admin solo aparece si el PIN es correcto -->
-        <div id="admin-panel" style="display:none;">
-            <h2>Agregar nueva maceta</h2>
+      <input id="nombre-maceta" type="text" placeholder="Nombre">
+      <input id="precio-maceta" type="number" placeholder="Precio">
+      <input id="descripcion-maceta" type="text" placeholder="Descripción (características)">
+      <input id="imagen-maceta" type="text" placeholder="URL de la imagen (opcional)">
+      <br><br>
+      <button type="button" onclick="agregarMacetaAdmin()">Agregar Maceta</button>
+    </div>
+  </section>
 
-            <input type="text" id="nombre-maceta" placeholder="Nombre">
-            <input type="text" id="precio-maceta" placeholder="Precio">
-            <input type="text" id="descripcion-maceta" placeholder="Descripción">
-            <input type="text" id="imagen-maceta" placeholder="URL de la foto">
+  <!-- CATALOGO -->
+  <section id="catalogo" class="pantalla oculto">
+    <h1>Catálogo</h1>
+    <div id="catalogo-lista"></div>
+  </section>
 
-            <button onclick="agregarMacetaAdmin()">Agregar Maceta</button>
-        </div>
-    </section>
+  <!-- CARRITO -->
+  <section id="carrito" class="pantalla oculto">
+    <h1>Carrito</h1>
+    <div id="carrito-lista"></div>
+    <br>
+    <button type="button" class="especial" onclick="mostrarPantalla('checkout')">Comprar</button>
+  </section>
 
-    <!-- ===== CATÁLOGO ===== -->
-    <section id="catalogo" class="pantalla oculto">
-        <h1>Catálogo</h1>
+  <!-- CHECKOUT -->
+  <section id="checkout" class="pantalla oculto">
+    <h1>Concretar Compra</h1>
+    <input id="nombre" type="text" placeholder="Nombre completo">
+    <input id="direccion" type="text" placeholder="Dirección">
+    <input id="telefono" type="text" placeholder="Teléfono">
+    <br><br>
+    <button type="button" class="especial" onclick="finalizarCompra()">Realizar Pedido</button>
+    <button type="button" onclick="mostrarPantalla('carrito')">Atrás</button>
+  </section>
 
-        <div id="catalogo-lista"></div>
-    </section>
+  <!-- CONTACTO -->
+  <section id="contacto" class="pantalla oculto">
+    <h1>Contacto</h1>
+    <input id="mail-nombre" type="text" placeholder="Tu nombre">
+    <input id="mail-email" type="email" placeholder="Tu email">
+    <textarea id="mail-mensaje" placeholder="Escribí tu mensaje..."></textarea>
+    <br>
+    <button type="button" class="especial" onclick="enviarMensaje()">Enviar</button>
+  </section>
 
-    <!-- ===== CARRITO ===== -->
-    <section id="carrito" class="pantalla oculto">
-        <h1>Carrito</h1>
-
-        <div id="carrito-lista"></div>
-
-        <br>
-        <button onclick="mostrarPantalla('checkout')" class="especial">Comprar</button>
-    </section>
-
-    <!-- ===== CHECKOUT ===== -->
-    <section id="checkout" class="pantalla oculto">
-        <h1>Concretar Compra</h1>
-
-        <input type="text" id="nombre" placeholder="Nombre completo">
-        <input type="text" id="direccion" placeholder="Dirección">
-        <input type="text" id="telefono" placeholder="Número de contacto">
-
-        <button class="especial" onclick="finalizarCompra()">Realizar Pedido</button>
-        <br><br>
-        <button onclick="mostrarPantalla('carrito')">Volver al carrito</button>
-    </section>
-
-    <!-- ===== CONTACTO ===== -->
-    <section id="contacto" class="pantalla oculto">
-        <h1>Contacto</h1>
-
-        <input type="text" id="mail-nombre" placeholder="Tu nombre">
-        <input type="email" id="mail-email" placeholder="Tu email">
-        <textarea id="mail-mensaje" placeholder="Escribí tu mensaje..."></textarea>
-
-        <button class="especial" onclick="enviarMensaje()">Enviar</button>
-    </section>
-
-    <!-- ===== SCRIPT ===== -->
-    <script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
+
 
