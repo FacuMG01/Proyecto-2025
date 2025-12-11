@@ -20,6 +20,11 @@ function mostrarPantalla(id) {
 
     if (id === "catalogo") mostrarCatalogo();
     if (id === "carrito") mostrarCarrito();
+
+    // cada vez que cambiamos de pantalla, el panel admin permanece oculto hasta que ingreses el pin
+    if (!admin) {
+        document.getElementById("admin-panel").classList.add("oculto");
+    }
 }
 
 
@@ -111,6 +116,7 @@ function verificarPin() {
     } else {
         admin = false;
         alert("PIN incorrecto");
+        document.getElementById("admin-panel").classList.add("oculto");
     }
 }
 
@@ -154,4 +160,3 @@ function compraExitosa() {
 function mensajeEnviado() {
     alert("Mensaje enviado");
 }
-

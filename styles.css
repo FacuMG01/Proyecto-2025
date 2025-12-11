@@ -34,6 +34,11 @@ nav {
     border-color: #FFA9A9;
 }
 
+/* ===== OCULTAR ===== */
+.oculto {
+    display: none !important;
+}
+
 /* ===== PANTALLAS ===== */
 .pantalla {
     display: none;
