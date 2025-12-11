@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tienda de Macetas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<nav>
+    <button class="nav-btn" onclick="mostrar('inicio')">Inicio</button>
+    <button class="nav-btn" onclick="mostrar('catalogo')">Catálogo</button>
+    <button class="nav-btn" onclick="mostrar('carrito')">Carrito</button>
+    <button class="nav-btn" onclick="mostrar('contacto')">Contacto</button>
+</nav>
+
+<!-- INICIO -->
+<section id="inicio" class="pantalla">
+    <h1>Tienda de Macetas</h1>
+
+    <h3>Modo Administrador</h3>
+    <input id="pin" placeholder="Ingresar PIN">
+    <button onclick="validarPin()">Entrar</button>
+
+    <br><br>
+    <button onclick="entrarComoCliente()">Ir a comprar</button>
+</section>
+
+<!-- CATALOGO -->
+<section id="catalogo" class="pantalla oculto">
+    <h1>Catálogo</h1>
+    <div id="lista-productos"></div>
+</section>
+
+<!-- CARRITO -->
+<section id="carrito" class="pantalla oculto">
+    <h1>Carrito</h1>
+    <div id="carrito-lista"></div>
+    <button onclick="mostrar('compra')">Comprar</button>
+</section>
+
+<!-- COMPRA -->
+<section id="compra" class="pantalla oculto">
+    <h1>Concretar compra</h1>
+    <input id="nombre" placeholder="Nombre"><br>
+    <input id="direccion" placeholder="Dirección"><br>
+    <input id="telefono" placeholder="Teléfono"><br><br>
+    <button onclick="finalizarCompra()">Realizar Pedido</button>
+    <button onclick="mostrar('carrito')">Atrás</button>
+</section>
+
+<!-- PEDIDO EXITOSO -->
+<section id="exito" class="pantalla oculto">
+    <h1>Pedido Exitoso</h1>
+    <p>Tu pedido fue realizado correctamente.</p>
+    <button onclick="mostrar('inicio')">Volver al inicio</button>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="pantalla oculto">
+    <h1>Contacto</h1>
+    <input id="contacto-nombre" placeholder="Nombre"><br>
+    <input id="contacto-mail" placeholder="Mail"><br>
+    <textarea id="contacto-msj" placeholder="Mensaje"></textarea><br>
+    <button onclick="enviarMensaje()">Enviar</button>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
