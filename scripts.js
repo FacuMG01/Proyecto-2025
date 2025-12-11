@@ -1,39 +1,52 @@
-// ===== VARIABLES =====
+// ===============================
+// VARIABLES
+// ===============================
 let productos = [];
 let carrito = [];
-const PIN_ADMIN = "1234"; // Podés cambiarlo
-let adminActivo = false;
+let admin = false;
+const PIN_CORRECTO = "1234"; // podés cambiarlo
 
 
-// ===== CAMBIO DE PANTALLA =====
+// ===============================
+// CAMBIAR PANTALLAS
+// ===============================
 function mostrarPantalla(id) {
     document.querySelectorAll(".pantalla").forEach(p => p.classList.add("oculto"));
     document.getElementById(id).classList.remove("oculto");
 
-    document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("activo"));
-    const btn = [...document.querySelectorAll(".nav-btn")].find(x => x.textContent.toLowerCase() === id);
-    if (btn) btn.classList.add("activo");
+    document.querySelectorAll(".nav-btn").forEach(btn => btn.classList.remove("activo"));
 
-    if (id === "catalogo") mostrarProductos();
+    const btnActivo = [...document.querySelectorAll(".nav-btn")].find(b =>
+        b.textContent.toLowerCase() === id.toLowerCase()
+    );
+
+    if (btnActivo) btnActivo.classList.add("activo");
+
+    if (id === "catalogo") mostrarCatalogo();
     if (id === "carrito") mostrarCarrito();
 }
 
 
-// ===== CARGAR JSON =====
+// ===============================
+// CARGAR PRODUCTOS JSON
+// ===============================
 async function cargarProductos() {
     try {
         const res = await fetch("productos.json");
         productos = await res.json();
-        mostrarProductos();
-    } catch (e) {
-        console.log("Error cargando JSON:", e);
+    } catch (err) {
+        console.log("Error cargando JSON:", err);
     }
 }
 
+cargarProductos();
 
-// ===== MOSTRAR CATÁLOGO =====
-function mostrarProductos() {
-    const cont = document.getElementById("catalogo-lista");
+
+// ===============================
+// MOSTRAR CATALOGO
+// ===============================
+function mostrarCatalogo() {
+    const cont = document.getElementById("lista-productos");
     cont.innerHTML = "";
 
     productos.forEach(prod => {
@@ -47,7 +60,7 @@ function mostrarProductos() {
             <p><strong>Ideal para:</strong> ${prod.ideal}</p>
             <p><strong>Características:</strong> ${prod.caracteristicas}</p>
             <h3>$ ${prod.precio}</h3>
-            <button onclick="agregarAlCarrito(${prod.id})">+</button>
+            <button onclick="agregarAlCarrito(${prod.id})">Agregar</button>
         `;
 
         cont.appendChild(card);
@@ -55,31 +68,24 @@ function mostrarProductos() {
 }
 
 
-// ===== AGREGAR AL CARRITO =====
+// ===============================
+// CARRITO
+// ===============================
 function agregarAlCarrito(id) {
     carrito.push(id);
     alert("Agregado al carrito");
 }
 
-
-// ===== QUITAR DEL CARRITO =====
-function eliminarDelCarrito(index) {
-    carrito.splice(index, 1);
-    mostrarCarrito();
-}
-
-
-// ===== MOSTRAR CARRITO =====
 function mostrarCarrito() {
-    const cont = document.getElementById("carrito-lista");
+    const cont = document.getElementById("lista-carrito");
     cont.innerHTML = "";
 
     if (carrito.length === 0) {
-        cont.innerHTML = "<p>El carrito está vacío.</p>";
+        cont.innerHTML = "<p>Tu carrito está vacío.</p>";
         return;
     }
 
-    carrito.forEach((idProd, i) => {
+    carrito.forEach((idProd, index) => {
         const prod = productos.find(p => p.id === idProd);
 
         const card = document.createElement("div");
@@ -88,82 +94,58 @@ function mostrarCarrito() {
         card.innerHTML = `
             <h3>${prod.nombre}</h3>
             <p>$ ${prod.precio}</p>
-            <button onclick="eliminarDelCarrito(${i})">Quitar</button>
+            <button onclick="eliminarDelCarrito(${index})">Quitar</button>
         `;
 
         cont.appendChild(card);
     });
 }
 
+function eliminarDelCarrito(index) {
+    carrito.splice(index, 1);
+    mostrarCarrito();
+}
 
-// ===== FINALIZAR COMPRA =====
-function finalizarCompra() {
+
+// ===============================
+// ADMIN
+// ===============================
+function verificarPin() {
+    const pinIngresado = document.getElementById("pinAdmin").value;
+
+    if (pinIngresado === PIN_CORRECTO) {
+        admin = true;
+        alert("Modo administrador activado (simulado)");
+    } else {
+        admin = false;
+        alert("PIN incorrecto");
+    }
+}
+
+function entrarComoCliente() {
+    mostrarPantalla("catalogo");
+}
+
+
+// ===============================
+// COMPRA
+// ===============================
+function compraExitosa() {
     if (carrito.length === 0) {
         alert("El carrito está vacío");
         return;
     }
 
-    alert("Pedido exitoso");
+    alert("Pedido realizado con éxito");
     carrito = [];
     mostrarPantalla("inicio");
 }
 
 
-// ===== MENSAJE DE CONTACTO =====
-function enviarMensaje() {
+// ===============================
+// CONTACTO
+// ===============================
+function mensajeEnviado() {
     alert("Mensaje enviado");
 }
 
-
-// ===== VALIDAR PIN ADMIN =====
-function entrarAdmin() {
-    const pin = document.getElementById("admin-pin").value;
-
-    if (pin === PIN_ADMIN) {
-        adminActivo = true;
-        document.getElementById("admin-panel").style.display = "block";
-        alert("Modo administrador activado");
-    } else {
-        alert("PIN incorrecto");
-        adminActivo = false;
-    }
-}
-
-
-// ===== AGREGAR MACETA DESDE ADMIN =====
-function agregarMacetaAdmin() {
-    if (!adminActivo) {
-        alert("No sos admin");
-        return;
-    }
-
-    const nombre = document.getElementById("nombre-maceta").value;
-    const precio = document.getElementById("precio-maceta").value;
-    const descripcion = document.getElementById("descripcion-maceta").value;
-    const imagen = document.getElementById("imagen-maceta").value;
-
-    if (!nombre || !precio || !descripcion || !imagen) {
-        alert("Faltan datos");
-        return;
-    }
-
-    const nueva = {
-        id: productos.length + 1,
-        nombre,
-        precio: Number(precio),
-        material: "Material no especificado",
-        tamano: "Tamaño no especificado",
-        ideal: "No especificado",
-        caracteristicas: descripcion,
-        imagen
-    };
-
-    productos.push(nueva);
-
-    mostrarProductos();
-    alert("Maceta agregada localmente");
-}
-
-
-// ===== INICIALIZAR =====
-cargarProductos();

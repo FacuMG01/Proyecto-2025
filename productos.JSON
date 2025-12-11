@@ -5,7 +5,7 @@
     "precio": 15000,
     "material": "Terracota",
     "tamano": "12 cm de alto por 10 de ancho",
-    "ideal": "Cactus y suculentas",
+    "ideal": "Cactus y Suculentas",
     "caracteristicas": "Drenaje rápido",
     "imagen": "img/maceta_terracota.png"
   },
@@ -15,7 +15,7 @@
     "precio": 18000,
     "material": "Cemento liviano",
     "tamano": "10 cm de alto por 10 de ancho",
-    "ideal": "Plantas aromáticas",
+    "ideal": "Plantas Aromáticas",
     "caracteristicas": "Muy durable",
     "imagen": "img/maceta_texturizada.png"
   },
@@ -45,7 +45,7 @@
     "precio": 25000,
     "material": "Terracota orgánica",
     "tamano": "13 cm de alto por 12 de ancho",
-    "ideal": "Helech0s y potus",
+    "ideal": "Helechos y Potus",
     "caracteristicas": "Superficie rugosa",
     "imagen": "img/maceta_estriada.png"
   },

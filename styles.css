@@ -1,55 +1,45 @@
 /* ===== TIPOGRAFÍAS ===== */
 @import url('https://fonts.googleapis.com/css2?family=Preahvihear&family=Share+Tech&display=swap');
 
-/* ===== ESTILOS GENERALES ===== */
+/* ===== GENERAL ===== */
 body {
-    font-family: "Preahvihear", sans-serif;
-    background-color: #EDDAC5;
     margin: 0;
     padding: 0;
-}
-
-h1, h2, h3, p, input, button, textarea {
     font-family: "Preahvihear", sans-serif;
-    color: black;
+    background-color: #EDDAC5;
 }
 
 /* ===== NAVBAR ===== */
 nav {
-    width: 100%;
-    background: #D6EE95;
-    padding: 15px;
+    background-color: #D6EE95;
+    padding: 18px;
     display: flex;
     justify-content: center;
-    gap: 40px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    gap: 25px;
     border-bottom: 2px solid black;
 }
 
 .nav-btn {
     background: #D9D9D9;
-    border: none;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border-radius: 44px;
+    border: 2px solid black;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
     transition: 0.2s;
+}
+
+.nav-btn.activo {
+    color: #FFA9A9;
+    font-family: "Share Tech", sans-serif;
+    border-color: #FFA9A9;
 }
 
 .nav-btn:hover {
     transform: scale(1.05);
 }
 
-/* ===== BOTÓN ACTIVO (COLOR EXACTO FIGMA #FFA9A9) ===== */
-.nav-btn.activo {
-    font-family: "Share Tech", sans-serif;
-    color: #FFA9A9;
-    font-weight: bold;
-}
-
-/* ===== CONTENEDORES DE PANTALLAS ===== */
+/* ===== PANTALLAS ===== */
 .pantalla {
     display: none;
     padding: 30px;
@@ -59,65 +49,60 @@ nav {
     display: block;
 }
 
-/* ===== TARJETAS DE PRODUCTO ===== */
+/* ===== TARJETAS DE PRODUCTOS ===== */
 .producto {
-    background: #FFFFFF;
-    padding: 20px;
-    margin: 15px 0;
+    background-color: white;
     border-radius: 44px;
     border: 2px solid black;
-    max-width: 350px;
+    padding: 20px;
+    margin: 25px auto;
+    max-width: 450px;
+    box-shadow: 4px 4px 0px #00000030;
 }
 
 .producto h3 {
-    margin: 0 0 10px 0;
+    margin: 0;
+    font-size: 22px;
+}
+
+.producto p {
+    margin: 8px 0;
 }
 
 .producto button {
-    margin-top: 10px;
-    padding: 8px 15px;
     background: #D9D9D9;
+    padding: 10px 20px;
     border-radius: 44px;
-    border: none;
+    border: 2px solid black;
     cursor: pointer;
-}
-
-/* ===== CARRITO ===== */
-#carrito-lista .producto {
-    display: flex;
-    flex-direction: column;
 }
 
 /* ===== FORMULARIOS ===== */
 input, textarea {
-    width: 80%;
-    padding: 12px;
-    border-radius: 44px;
-    border: 2px solid #000;
+    width: 90%;
+    padding: 14px;
     margin: 10px 0;
-    background: #FFF;
-}
-
-button {
-    padding: 12px 25px;
-    background: #D9D9D9;
-    border: none;
     border-radius: 44px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    transform: scale(1.03);
-}
-
-/* ===== BOTONES ESPECIALES ===== */
-button.especial {
-    background: #D6EE95;
     border: 2px solid black;
+    background: white;
+    font-family: "Preahvihear";
 }
 
 textarea {
     height: 120px;
     resize: none;
+}
+
+/* ===== BOTONES ESPECIALES ===== */
+button.especial {
+    background-color: #D6EE95;
+    border: 2px solid black;
+    border-radius: 44px;
+    padding: 12px 30px;
+}
+
+/* ===== TITULOS ===== */
+h1 {
+    text-align: center;
+    margin-top: 0;
 }
