@@ -9,37 +9,52 @@
 
 <body>
 
-    <!-- ===== NAVBAR ===== -->
+    <!-- ========== NAVBAR ========== -->
     <nav>
-        <button class="nav-btn activo" onclick="mostrarPantalla('inicio')">Inicio</button>
-        <button class="nav-btn" onclick="mostrarPantalla('catalogo')">Catálogo</button>
-        <button class="nav-btn" onclick="mostrarPantalla('carrito')">Carrito</button>
-        <button class="nav-btn" onclick="mostrarPantalla('contacto')">Contacto</button>
+        <button class="nav-btn activo" onclick="mostrarPantalla('inicio')">inicio</button>
+        <button class="nav-btn" onclick="mostrarPantalla('catalogo')">catalogo</button>
+        <button class="nav-btn" onclick="mostrarPantalla('carrito')">carrito</button>
+        <button class="nav-btn" onclick="mostrarPantalla('contacto')">contacto</button>
     </nav>
 
-    <!-- ===== PANTALLA INICIO ===== -->
+    <!-- ========== INICIO ========== -->
     <section id="inicio" class="pantalla">
         <h1>Tienda de Macetas</h1>
 
         <div class="producto">
             <h3>Acceso Administrador</h3>
             <p>Ingresá el PIN para agregar productos al catálogo.</p>
-            <input type="password" id="pinAdmin" placeholder="Ingresar PIN">
+            <input id="pinAdmin" type="password" placeholder="PIN">
             <button onclick="verificarPin()">Ingresar</button>
         </div>
 
+        <!-- PANEL ADMIN -->
+        <div id="admin-panel" class="producto oculto">
+            <h3>Agregar nueva maceta</h3>
+
+            <input id="admin-nombre" type="text" placeholder="Nombre">
+            <input id="admin-precio" type="number" placeholder="Precio">
+            <input id="admin-material" type="text" placeholder="Material">
+            <input id="admin-tamano" type="text" placeholder="Tamaño">
+            <input id="admin-ideal" type="text" placeholder="Ideal para">
+            <input id="admin-caract" type="text" placeholder="Características">
+            <input id="admin-imagen" type="text" placeholder="Ruta de imagen (img/maceta.png)">
+
+            <button class="especial" onclick="agregarMacetaAdmin()">Guardar Maceta</button>
+        </div>
+
         <div style="text-align:center; margin-top:25px;">
-            <button class="especial" onclick="entrarComoCliente()">Entrar como cliente</button>
+            <button class="especial" onclick="mostrarPantalla('catalogo')">Entrar como cliente</button>
         </div>
     </section>
 
-    <!-- ===== PANTALLA CATALOGO ===== -->
+    <!-- ========== CATALOGO ========== -->
     <section id="catalogo" class="pantalla oculto">
         <h1>Catálogo</h1>
         <div id="lista-productos"></div>
     </section>
 
-    <!-- ===== PANTALLA CARRITO ===== -->
+    <!-- ========== CARRITO ========== -->
     <section id="carrito" class="pantalla oculto">
         <h1>Carrito</h1>
         <div id="lista-carrito"></div>
@@ -49,13 +64,14 @@
         </div>
     </section>
 
-    <!-- ===== PANTALLA COMPRA ===== -->
+    <!-- ========== COMPRA ========== -->
     <section id="compra" class="pantalla oculto">
         <h1>Finalizar Compra</h1>
 
         <input type="text" placeholder="Nombre completo">
         <input type="text" placeholder="Dirección">
-        <input type="text" placeholder="Email">
+        <input type="email" placeholder="Email">
+
         <button class="especial" onclick="compraExitosa()">Realizar Pedido</button>
 
         <div style="text-align:center; margin-top:20px;">
@@ -63,17 +79,17 @@
         </div>
     </section>
 
-    <!-- ===== PANTALLA CONTACTO ===== -->
+    <!-- ========== CONTACTO ========== -->
     <section id="contacto" class="pantalla oculto">
         <h1>Contacto</h1>
 
         <input type="text" placeholder="Nombre">
         <input type="email" placeholder="Email">
         <textarea placeholder="Mensaje"></textarea>
+
         <button class="especial" onclick="mensajeEnviado()">Enviar</button>
     </section>
 
     <script src="script.js"></script>
 </body>
 </html>
-

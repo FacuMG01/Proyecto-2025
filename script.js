@@ -4,23 +4,19 @@
 let productos = [];
 let carrito = [];
 let admin = false;
-const PIN_CORRECTO = "1234"; // podés cambiarlo
+const PIN_CORRECTO = "1234";
 
 
 // ===============================
-// CAMBIAR PANTALLAS
+// CAMBIO DE PANTALLA
 // ===============================
 function mostrarPantalla(id) {
     document.querySelectorAll(".pantalla").forEach(p => p.classList.add("oculto"));
     document.getElementById(id).classList.remove("oculto");
 
-    document.querySelectorAll(".nav-btn").forEach(btn => btn.classList.remove("activo"));
-
-    const btnActivo = [...document.querySelectorAll(".nav-btn")].find(b =>
-        b.textContent.toLowerCase() === id.toLowerCase()
-    );
-
-    if (btnActivo) btnActivo.classList.add("activo");
+    document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("activo"));
+    const btn = [...document.querySelectorAll(".nav-btn")].find(x => x.textContent.toLowerCase() === id);
+    if (btn) btn.classList.add("activo");
 
     if (id === "catalogo") mostrarCatalogo();
     if (id === "carrito") mostrarCarrito();
@@ -28,22 +24,17 @@ function mostrarPantalla(id) {
 
 
 // ===============================
-// CARGAR PRODUCTOS JSON
+// CARGAR JSON
 // ===============================
 async function cargarProductos() {
-    try {
-        const res = await fetch("productos.json");
-        productos = await res.json();
-    } catch (err) {
-        console.log("Error cargando JSON:", err);
-    }
+    const res = await fetch("productos.json");
+    productos = await res.json();
 }
-
 cargarProductos();
 
 
 // ===============================
-// MOSTRAR CATALOGO
+// CATALOGO
 // ===============================
 function mostrarCatalogo() {
     const cont = document.getElementById("lista-productos");
@@ -85,7 +76,7 @@ function mostrarCarrito() {
         return;
     }
 
-    carrito.forEach((idProd, index) => {
+    carrito.forEach((idProd, i) => {
         const prod = productos.find(p => p.id === idProd);
 
         const card = document.createElement("div");
@@ -94,15 +85,15 @@ function mostrarCarrito() {
         card.innerHTML = `
             <h3>${prod.nombre}</h3>
             <p>$ ${prod.precio}</p>
-            <button onclick="eliminarDelCarrito(${index})">Quitar</button>
+            <button onclick="eliminarDelCarrito(${i})">Quitar</button>
         `;
 
         cont.appendChild(card);
     });
 }
 
-function eliminarDelCarrito(index) {
-    carrito.splice(index, 1);
+function eliminarDelCarrito(i) {
+    carrito.splice(i, 1);
     mostrarCarrito();
 }
 
@@ -111,24 +102,43 @@ function eliminarDelCarrito(index) {
 // ADMIN
 // ===============================
 function verificarPin() {
-    const pinIngresado = document.getElementById("pinAdmin").value;
+    const pin = document.getElementById("pinAdmin").value;
 
-    if (pinIngresado === PIN_CORRECTO) {
+    if (pin === PIN_CORRECTO) {
         admin = true;
-        alert("Modo administrador activado (simulado)");
+        document.getElementById("admin-panel").classList.remove("oculto");
+        alert("Modo administrador activado");
     } else {
         admin = false;
         alert("PIN incorrecto");
     }
 }
 
-function entrarComoCliente() {
-    mostrarPantalla("catalogo");
+function agregarMacetaAdmin() {
+    if (!admin) {
+        alert("No sos admin");
+        return;
+    }
+
+    const nueva = {
+        id: productos.length + 1,
+        nombre: document.getElementById("admin-nombre").value,
+        precio: Number(document.getElementById("admin-precio").value),
+        material: document.getElementById("admin-material").value,
+        tamano: document.getElementById("admin-tamano").value,
+        ideal: document.getElementById("admin-ideal").value,
+        caracteristicas: document.getElementById("admin-caract").value,
+        imagen: document.getElementById("admin-imagen").value
+    };
+
+    productos.push(nueva);
+    mostrarCatalogo();
+    alert("Maceta agregada");
 }
 
 
 // ===============================
-// COMPRA
+// COMPRA Y CONTACTO
 // ===============================
 function compraExitosa() {
     if (carrito.length === 0) {
@@ -141,10 +151,6 @@ function compraExitosa() {
     mostrarPantalla("inicio");
 }
 
-
-// ===============================
-// CONTACTO
-// ===============================
 function mensajeEnviado() {
     alert("Mensaje enviado");
 }

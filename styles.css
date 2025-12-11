@@ -26,17 +26,12 @@ nav {
     border: 2px solid black;
     cursor: pointer;
     font-size: 18px;
-    transition: 0.2s;
 }
 
 .nav-btn.activo {
     color: #FFA9A9;
     font-family: "Share Tech", sans-serif;
     border-color: #FFA9A9;
-}
-
-.nav-btn:hover {
-    transform: scale(1.05);
 }
 
 /* ===== PANTALLAS ===== */
@@ -49,9 +44,9 @@ nav {
     display: block;
 }
 
-/* ===== TARJETAS DE PRODUCTOS ===== */
+/* ===== TARJETAS ===== */
 .producto {
-    background-color: white;
+    background: white;
     border-radius: 44px;
     border: 2px solid black;
     padding: 20px;
@@ -63,10 +58,6 @@ nav {
 .producto h3 {
     margin: 0;
     font-size: 22px;
-}
-
-.producto p {
-    margin: 8px 0;
 }
 
 .producto button {
@@ -84,7 +75,6 @@ input, textarea {
     margin: 10px 0;
     border-radius: 44px;
     border: 2px solid black;
-    background: white;
     font-family: "Preahvihear";
 }
 
@@ -95,7 +85,7 @@ textarea {
 
 /* ===== BOTONES ESPECIALES ===== */
 button.especial {
-    background-color: #D6EE95;
+    background: #D6EE95;
     border: 2px solid black;
     border-radius: 44px;
     padding: 12px 30px;
@@ -104,5 +94,4 @@ button.especial {
 /* ===== TITULOS ===== */
 h1 {
     text-align: center;
-    margin-top: 0;
 }
