@@ -1,71 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda de Macetas</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-<nav>
-    <button class="nav-btn" onclick="mostrar('inicio')">Inicio</button>
-    <button class="nav-btn" onclick="mostrar('catalogo')">Catálogo</button>
-    <button class="nav-btn" onclick="mostrar('carrito')">Carrito</button>
-    <button class="nav-btn" onclick="mostrar('contacto')">Contacto</button>
-</nav>
+    <!-- ===== MENÚ SUPERIOR ===== -->
+    <nav>
+        <button class="nav-btn activo" onclick="mostrarPantalla('inicio')">Inicio</button>
+        <button class="nav-btn" onclick="mostrarPantalla('catalogo')">Catálogo</button>
+        <button class="nav-btn" onclick="mostrarPantalla('carrito')">Carrito</button>
+        <button class="nav-btn" onclick="mostrarPantalla('contacto')">Contacto</button>
+    </nav>
 
-<!-- INICIO -->
-<section id="inicio" class="pantalla">
-    <h1>Tienda de Macetas</h1>
+    <!-- ===== PANTALLA DE INICIO (ADMIN) ===== -->
+    <section id="inicio" class="pantalla">
+        <h1>Modo Administrador</h1>
 
-    <h3>Modo Administrador</h3>
-    <input id="pin" placeholder="Ingresar PIN">
-    <button onclick="validarPin()">Entrar</button>
+        <p>Ingresá el PIN para acceder al panel de carga de macetas.</p>
+        <input type="password" id="admin-pin" placeholder="Ingresar PIN">
 
-    <br><br>
-    <button onclick="entrarComoCliente()">Ir a comprar</button>
-</section>
+        <br><br>
+        <button onclick="entrarAdmin()">Entrar como Admin</button>
+        <button onclick="mostrarPantalla('catalogo')">Ir a comprar</button>
 
-<!-- CATALOGO -->
-<section id="catalogo" class="pantalla oculto">
-    <h1>Catálogo</h1>
-    <div id="lista-productos"></div>
-</section>
+        <!-- Panel admin solo aparece si el PIN es correcto -->
+        <div id="admin-panel" style="display:none;">
+            <h2>Agregar nueva maceta</h2>
 
-<!-- CARRITO -->
-<section id="carrito" class="pantalla oculto">
-    <h1>Carrito</h1>
-    <div id="carrito-lista"></div>
-    <button onclick="mostrar('compra')">Comprar</button>
-</section>
+            <input type="text" id="nombre-maceta" placeholder="Nombre">
+            <input type="text" id="precio-maceta" placeholder="Precio">
+            <input type="text" id="descripcion-maceta" placeholder="Descripción">
+            <input type="text" id="imagen-maceta" placeholder="URL de la foto">
 
-<!-- COMPRA -->
-<section id="compra" class="pantalla oculto">
-    <h1>Concretar compra</h1>
-    <input id="nombre" placeholder="Nombre"><br>
-    <input id="direccion" placeholder="Dirección"><br>
-    <input id="telefono" placeholder="Teléfono"><br><br>
-    <button onclick="finalizarCompra()">Realizar Pedido</button>
-    <button onclick="mostrar('carrito')">Atrás</button>
-</section>
+            <button onclick="agregarMacetaAdmin()">Agregar Maceta</button>
+        </div>
+    </section>
 
-<!-- PEDIDO EXITOSO -->
-<section id="exito" class="pantalla oculto">
-    <h1>Pedido Exitoso</h1>
-    <p>Tu pedido fue realizado correctamente.</p>
-    <button onclick="mostrar('inicio')">Volver al inicio</button>
-</section>
+    <!-- ===== CATÁLOGO ===== -->
+    <section id="catalogo" class="pantalla oculto">
+        <h1>Catálogo</h1>
 
-<!-- CONTACTO -->
-<section id="contacto" class="pantalla oculto">
-    <h1>Contacto</h1>
-    <input id="contacto-nombre" placeholder="Nombre"><br>
-    <input id="contacto-mail" placeholder="Mail"><br>
-    <textarea id="contacto-msj" placeholder="Mensaje"></textarea><br>
-    <button onclick="enviarMensaje()">Enviar</button>
-</section>
+        <div id="catalogo-lista"></div>
+    </section>
 
-<script src="script.js"></script>
+    <!-- ===== CARRITO ===== -->
+    <section id="carrito" class="pantalla oculto">
+        <h1>Carrito</h1>
+
+        <div id="carrito-lista"></div>
+
+        <br>
+        <button onclick="mostrarPantalla('checkout')" class="especial">Comprar</button>
+    </section>
+
+    <!-- ===== CHECKOUT ===== -->
+    <section id="checkout" class="pantalla oculto">
+        <h1>Concretar Compra</h1>
+
+        <input type="text" id="nombre" placeholder="Nombre completo">
+        <input type="text" id="direccion" placeholder="Dirección">
+        <input type="text" id="telefono" placeholder="Número de contacto">
+
+        <button class="especial" onclick="finalizarCompra()">Realizar Pedido</button>
+        <br><br>
+        <button onclick="mostrarPantalla('carrito')">Volver al carrito</button>
+    </section>
+
+    <!-- ===== CONTACTO ===== -->
+    <section id="contacto" class="pantalla oculto">
+        <h1>Contacto</h1>
+
+        <input type="text" id="mail-nombre" placeholder="Tu nombre">
+        <input type="email" id="mail-email" placeholder="Tu email">
+        <textarea id="mail-mensaje" placeholder="Escribí tu mensaje..."></textarea>
+
+        <button class="especial" onclick="enviarMensaje()">Enviar</button>
+    </section>
+
+    <!-- ===== SCRIPT ===== -->
+    <script src="script.js"></script>
+
 </body>
 </html>
+

@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "nombre": "Maceta Terracota",
+    "precio": 15000,
+    "material": "Terracota",
+    "tamano": "12 cm de alto por 10 de ancho",
+    "ideal": "Cactus y suculentas",
+    "caracteristicas": "Drenaje rápido",
+    "imagen": "img/maceta_terracota.png"
+  },
+  {
+    "id": 2,
+    "nombre": "Maceta Texturizada",
+    "precio": 18000,
+    "material": "Cemento liviano",
+    "tamano": "10 cm de alto por 10 de ancho",
+    "ideal": "Plantas aromáticas",
+    "caracteristicas": "Muy durable",
+    "imagen": "img/maceta_texturizada.png"
+  },
+  {
+    "id": 3,
+    "nombre": "Maceta Ceramica",
+    "precio": 20000,
+    "material": "Cerámica",
+    "tamano": "11 cm de alto por 11 de ancho",
+    "ideal": "Plantas de interior pequeñas",
+    "caracteristicas": "Retención de humedad",
+    "imagen": "img/maceta_ceramica.png"
+  },
+  {
+    "id": 4,
+    "nombre": "Maceta Terracota Grande",
+    "precio": 30000,
+    "material": "Terracota reforzada",
+    "tamano": "18 cm de alto por 16 de ancho",
+    "ideal": "Sansevierias",
+    "caracteristicas": "Gran capacidad",
+    "imagen": "img/maceta_terracota_grande.png"
+  },
+  {
+    "id": 5,
+    "nombre": "Maceta Estriada",
+    "precio": 25000,
+    "material": "Terracota orgánica",
+    "tamano": "13 cm de alto por 12 de ancho",
+    "ideal": "Helech0s y potus",
+    "caracteristicas": "Superficie rugosa",
+    "imagen": "img/maceta_estriada.png"
+  },
+  {
+    "id": 6,
+    "nombre": "Maceta Ceramica Verde",
+    "precio": 20000,
+    "material": "Cerámica verde",
+    "tamano": "11 cm de alto por 11 de ancho",
+    "ideal": "Plantas de interior pequeñas",
+    "caracteristicas": "Retención de humedad",
+    "imagen": "img/maceta_ceramica_verde.png"
+  }
+]
